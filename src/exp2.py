@@ -109,7 +109,7 @@ for seed in range(25):
     sens.append(sen(y_test, y_pred))
     spes.append(spe(y_test, y_pred))
 
-print("Higuchi 2 mean accuracy:", np.mean(accs))
+print("\nHiguchi 2 mean accuracy:", np.mean(accs))
 print("Higuchi 2 mean sensitivity: ", np.mean(sens))
 print("Higuchi 2 mean specificity: ", np.mean(spes))
 
