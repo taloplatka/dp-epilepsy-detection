@@ -56,12 +56,11 @@ def extract_fd_features(
     return results
 
 
-def run_knn_with_results(X, y, seed, k=K, test_size=TEST_SIZE):
+def run_knn_with_results(X, y, seed, k=K, test_size=TEST_SIZE, return_train=False):
 
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=test_size, random_state=seed, stratify=y
     )
-    print(len(X_train))
 
     scaler = StandardScaler()
     scaler.fit(X_train)
@@ -72,11 +71,17 @@ def run_knn_with_results(X, y, seed, k=K, test_size=TEST_SIZE):
     knn = KNeighborsClassifier(n_neighbors=k)
     knn.fit(X_train_norm, y_train)
 
+    y_pred_train = knn.predict(X_train_norm)
+    train_acc = acc(y_train, y_pred_train)
+
     y_pred = knn.predict(X_test_norm)
 
     accuracy = acc(y_test, y_pred)
     sensitivity = sen(y_test, y_pred)
     specificity = spe(y_test, y_pred)
+
+    if return_train:
+        return train_acc, accuracy, sensitivity, specificity
     return accuracy, sensitivity, specificity
 
 

@@ -41,14 +41,16 @@ y = np.array([0] * 100 + [1] * 100)
 accs = []
 sens = []
 spes = []
+train_accs = []
 
 for seed in range(25):
-    acc, sen, spe = run_knn_with_results(X, y, seed)
+    train_acc, acc, sen, spe = run_knn_with_results(X, y, seed, return_train=True)
+    train_accs.append(train_acc)
     accs.append(acc)
     sens.append(sen)
     spes.append(spe)
 
-
+print("Higuchi train mean accuracy: ", np.mean(train_accs))
 print("Higuchi mean accuracy:", np.mean(accs))
 print("Higuchi mean sensitivity: ", np.mean(sens))
 print("Higuchi mean specificity: ", np.mean(spes))

@@ -5,4 +5,4 @@ WINDOW_SIZE = 730  # Window size for slicing EEG time series
 OVERLAP = 0.5  # Overlap for EEG time series windows
 SEED = 42  # Seed for np.random
 TEST_SIZE = 0.3  # Test size for train/test split
-K = 5  # K for KNN
+K = 7  # K for KNN
